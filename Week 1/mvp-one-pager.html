@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runner App MVP</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --ink: #1c1d1f;
+    --muted: #5d6066;
+    --line: #e2e0da;
+    --accent: #c2410c;
+    --must: #c2410c;   --must-bg: #fdf1ea;
+    --should: #1d6fa5; --should-bg: #eaf3f9;
+    --could: #4d7c3a;  --could-bg: #eef5ea;
+    --wont: #6b6e75;   --wont-bg: #f0f0ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141518;
+      --surface: #1d1f23;
+      --ink: #ecebe7;
+      --muted: #a2a5ab;
+      --line: #33363c;
+      --accent: #f08a4b;
+      --must: #f08a4b;   --must-bg: #2c211a;
+      --should: #6cb3e3; --should-bg: #182631;
+      --could: #93c47d;  --could-bg: #1c2719;
+      --wont: #a2a5ab;   --wont-bg: #24262a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .page {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 28px 16px 20px;
+  }
+  header {
+    display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+    gap: 8px 24px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 12px;
+  }
+  .eyebrow {
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 4px;
+  }
+  h1 { font-size: 30px; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
+  .tagline {
+    margin: 0; font-size: 17px; font-weight: 600; color: var(--accent);
+    max-width: 30em;
+  }
+  .intro {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    margin: 14px 0 12px;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .label {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 3px;
+  }
+  .card p { margin: 0; }
+  .constraints {
+    list-style: none; margin: 0 0 14px; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .constraints li {
+    border: 1px solid var(--line); background: var(--surface);
+    border-radius: 999px; padding: 3px 11px; font-size: 12.5px; font-weight: 500;
+  }
+  .constraints li::before { content: "\2713\00a0"; color: var(--accent); font-weight: 700; }
+  h2 {
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    margin: 0 0 8px; color: var(--ink);
+  }
+  .lanes {
+    display: grid; grid-template-columns: 1.15fr 1.15fr 1fr .85fr; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .lane {
+    border-radius: 8px; padding: 10px 12px 8px;
+    border-top: 4px solid var(--c); background: var(--cbg);
+  }
+  .lane.must   { --c: var(--must);   --cbg: var(--must-bg); }
+  .lane.should { --c: var(--should); --cbg: var(--should-bg); }
+  .lane.could  { --c: var(--could);  --cbg: var(--could-bg); }
+  .lane.wont   { --c: var(--wont);   --cbg: var(--wont-bg); }
+  .lane h3 { margin: 0; font-size: 14px; color: var(--c); }
+  .lane .when { margin: 0 0 6px; font-size: 11.5px; color: var(--muted); }
+  .lane ol, .lane ul { margin: 0; padding-left: 18px; font-size: 12.5px; }
+  .lane li { margin: 0 0 3px; }
+  .lane.wont li { color: var(--muted); }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--c); border: 1px solid var(--c);
+    border-radius: 4px; padding: 0 4px; margin-left: 3px; vertical-align: 1px;
+  }
+  .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .bottom ul { margin: 0; padding-left: 18px; font-size: 13px; }
+  .bottom li { margin: 0 0 4px; }
+  .bottom strong { font-weight: 650; }
+  footer {
+    margin-top: 14px; padding-top: 8px; border-top: 1px solid var(--line);
+    font-size: 11.5px; color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    .lanes { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 26px; }
+    .tagline { font-size: 15.5px; }
+    .intro, .bottom, .lanes { grid-template-columns: 1fr; }
+  }
+
+  /* Print: one page, white background, A4 or Letter */
+  @page { margin: 10mm; }
+  @media print {
+    :root {
+      --bg: #ffffff; --surface: #ffffff; --ink: #000000; --muted: #4a4d52;
+      --line: #cfccc4; --accent: #b23a0a;
+      --must: #b23a0a;   --must-bg: #fdf1ea;
+      --should: #1a6296; --should-bg: #eaf3f9;
+      --could: #3f6a2f;  --could-bg: #eef5ea;
+      --wont: #5a5d63;   --wont-bg: #f2f2f1;
+    }
+    html, body { background: #fff !important; }
+    body { font-size: 9.6pt; line-height: 1.35; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { max-width: none; padding: 0; }
+    header { padding-bottom: 6px; }
+    h1 { font-size: 20pt; }
+    .tagline { font-size: 12pt; }
+    .intro { margin: 8px 0; gap: 8px; }
+    .card { padding: 6px 10px; }
+    .constraints { margin-bottom: 9px; }
+    .constraints li { font-size: 8.6pt; padding: 1px 8px; }
+    .lanes { grid-template-columns: 1.15fr 1.15fr 1fr .85fr; gap: 7px; margin-bottom: 9px; }
+    .lane { padding: 6px 8px 5px; break-inside: avoid; }
+    .lane h3 { font-size: 10pt; }
+    .lane ol, .lane ul { font-size: 8.6pt; padding-left: 15px; }
+    .lane li { margin-bottom: 1.5px; }
+    .bottom { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .bottom ul { font-size: 8.8pt; }
+    .bottom li { margin-bottom: 2px; }
+    footer { margin-top: 8px; padding-top: 5px; font-size: 8pt; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <p class="eyebrow">MVP one-pager &middot; working name</p>
+      <h1>Runner App</h1>
+    </div>
+    <p class="tagline">&ldquo;Most running apps cheer you on. This one gets you to the finish line, injury-free.&rdquo;</p>
+  </header>
+
+  <section class="intro">
+    <div class="card">
+      <p class="label">Core intent</p>
+      <p>Help the runner train properly to the race plan and adapt it based on (1) how the runner feels and (2) race destination / route conditions.</p>
+    </div>
+    <div class="card">
+      <p class="label">Root need</p>
+      <p>Runners lack a personal, honest early-warning voice calibrated to their own body &mdash; apps cheer, nobody warns.</p>
+    </div>
+  </section>
+
+  <ul class="constraints" aria-label="Constraints">
+    <li>$0 build &amp; hosting</li>
+    <li>Demoable online</li>
+    <li>Local-first, no sign-up</li>
+    <li>Human makes the final call</li>
+    <li>Readable, commented code</li>
+  </ul>
+
+  <h2>Scope as decided</h2>
+  <section class="lanes">
+    <div class="lane must">
+      <h3>MUST &middot; MVP</h3>
+      <p class="when">Sprint 1</p>
+      <ol>
+        <li>Run upload + run log</li>
+        <li>Training plan entry/upload + plan vs actual</li>
+        <li>Race goal feasibility / projected finish</li>
+        <li>No-race fitness view (HR zone 80/20 + fitness trend)</li>
+        <li>Body map + mileage-ramp warning + see-a-pro escalation</li>
+        <li>Trust basics: &ldquo;Why?&rdquo; on recommendations, local-first, no sign-up, $0 hosting</li>
+      </ol>
+    </div>
+    <div class="lane should">
+      <h3>SHOULD</h3>
+      <p class="when">Sprints 2&ndash;3</p>
+      <ul>
+        <li>Basic calorie bank <span class="tag">moved from MVP</span></li>
+        <li>Lightweight race profile: total elevation gain + expected race-day temperature <span class="tag">promoted</span></li>
+        <li>A/B/C goals</li>
+        <li>Phase-aware fatigue context</li>
+        <li>Race week / Taper Jail</li>
+        <li>Carb-loading &ldquo;upcoming withdrawals&rdquo;</li>
+        <li>Good / bad pain translator</li>
+        <li>Recovery Lap / reverse taper</li>
+        <li>Distance-specific logic</li>
+      </ul>
+    </div>
+    <div class="lane could">
+      <h3>COULD</h3>
+      <p class="when">Later</p>
+      <ul>
+        <li>Course Twin</li>
+        <li>Climate gap</li>
+        <li>Ingredient substitutions</li>
+        <li>Fuel Fingerprint</li>
+        <li>Running Age</li>
+        <li>Game layer + Smart Skip</li>
+        <li>Test Kitchen / Race-Day Recipe Card</li>
+        <li>&ldquo;Should I Sign Up?&rdquo; check</li>
+        <li>Doctor-ready report</li>
+        <li>Couch-to-5K mode</li>
+        <li>Backtest vs Nov 1 race</li>
+      </ul>
+    </div>
+    <div class="lane wont">
+      <h3>WON&rsquo;T</h3>
+      <p class="when">This time</p>
+      <ul>
+        <li>Native iOS / Apple Health sync</li>
+        <li>Accounts / cloud sync</li>
+        <li>Payments</li>
+        <li>In-app AI agents</li>
+        <li>Shoe mileage</li>
+        <li>Social features</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bottom">
+    <div class="card">
+      <h2>Design principles</h2>
+      <ul>
+        <li><strong>Agents propose, runner decides.</strong> Every output is a recommendation with a &ldquo;Why?&rdquo; trail; an aid, not an authority.</li>
+        <li><strong>Personal baselines over averages.</strong> Pain, fatigue, plans and fuel calibrate to the individual from day one.</li>
+        <li><strong>Body map is the hub.</strong> One input powers injury warning, pain translator, Recovery Lap, Smart Skip and doctor report &mdash; model it well in Sprint 1.</li>
+        <li><strong>Share the app, not the data.</strong> Data stays in the browser: private, near-zero compute, free.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Open questions &amp; risks</h2>
+      <ul>
+        <li><strong>$0 delivery.</strong> Web apps likely can&rsquo;t read Apple Health and native iOS costs ~US$99/yr; free import paths (GPX/FIT/TCX, Strava API limits, free hosting tiers) still to verify.</li>
+        <li><strong>Agents drift.</strong> Output may diverge from requirements, with no clear explanation of chosen workflows.</li>
+        <li><strong>Sharing at scale.</strong> How others upload data, privacy of their data, compute needs, whether anyone should pay.</li>
+        <li><strong>Visibility.</strong> The LinkedIn series could go unnoticed &mdash; the biggest fear.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Source: BMAD brainstorming session, 2026-09-30/10-01 &middot; Vibe CEO: Anita &middot; Facilitator: Mary (BMAD Business Analyst)</footer>
+
+</div>
+</body>
+</html>
