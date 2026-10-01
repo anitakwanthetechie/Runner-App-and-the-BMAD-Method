@@ -27,7 +27,7 @@ This repository holds the files the BMAD agents produce along the way, from brai
 
 ## Follow along
 
-I'm sharing weekly updates on LinkedIn about building the app with the BMAD agent team, including what worked, what surprised me and what I learned.
+I'm sharing weekly updates on [LinkedIn](https://www.linkedin.com/in/anita-kwan) about building the app with the BMAD agent team, including what worked, what surprised me and what I learned.
 
 ## Disclaimer
 
