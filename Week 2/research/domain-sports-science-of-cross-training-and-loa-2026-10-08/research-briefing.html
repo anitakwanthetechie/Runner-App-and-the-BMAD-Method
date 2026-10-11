@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>runner-app Sports Science</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1d1d1f;--muted:#5f6368;--card:#ffffff;--line:#e3e1dc;--accent:#0b6e4f;
+--ver-bg:#e3f4ea;--ver-fg:#14532d;--med-bg:#fff4d6;--med-fg:#7a4b00;--low-bg:#fde2e1;--low-fg:#8a1c14;--unv-bg:#8a1c14;--unv-fg:#fff;--inf-bg:#e8e6f7;--inf-fg:#3b2f86}
+@media (prefers-color-scheme:dark){:root{--bg:#141517;--fg:#ececec;--muted:#a3a7ad;--card:#1d1f22;--line:#33363b;--accent:#4fc59a;
+--ver-bg:#173b27;--ver-fg:#b5f0cc;--med-bg:#3d3112;--med-fg:#ffd98a;--low-bg:#45201d;--low-fg:#ffb4ac;--unv-bg:#ff8a7a;--unv-fg:#1a0b09;--inf-bg:#2b2650;--inf-fg:#cfc8ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{padding:40px 16px 24px;border-bottom:1px solid var(--line)}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:40px;padding:0 16px}
+header .inner{max-width:1080px;margin:0 auto}
+.eyebrow{color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.2;margin:8px 0 12px}
+.decision{color:var(--muted);max-width:760px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.meta span{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;color:var(--muted)}
+nav.toc{position:sticky;top:16px;align-self:start;font-size:14px;padding-top:32px}
+nav.toc ul{list-style:none;padding:0;margin:0} nav.toc li{margin:6px 0}
+nav.toc a{color:var(--muted);text-decoration:none} nav.toc a:hover{color:var(--accent)}
+main{padding:32px 0 80px;min-width:0}
+h2{font-size:24px;margin:48px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
+h3{font-size:18px;margin:28px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 24px 20px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.summary h2{border-top:0;margin-top:16px}
+a{color:var(--accent)} a.cite{font-size:12px;text-decoration:none;vertical-align:super;margin-left:1px}
+.tw{overflow-x:auto;margin:16px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;border-radius:6px;padding:1px 7px;vertical-align:1px;white-space:nowrap}
+.badge.ver{background:var(--ver-bg);color:var(--ver-fg)}
+.badge.med{background:var(--med-bg);color:var(--med-fg)}
+.badge.low{background:var(--low-bg);color:var(--low-fg);outline:1px solid var(--low-fg)}
+.badge.unv{background:var(--unv-bg);color:var(--unv-fg);font-size:12px;padding:2px 9px}
+.badge.inf{background:var(--inf-bg);color:var(--inf-fg)}
+em.note{color:var(--muted);font-size:14px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin-top:14px}
+details.appendix summary{cursor:pointer;list-style:none} details.appendix summary h2{display:inline-block}
+details.appendix summary::after{content:" ▸ show";color:var(--accent);font-size:14px}
+details.appendix[open] summary::after{content:" ▾ hide"}
+table.sources tr:target{background:var(--med-bg)}
+footer{color:var(--muted);font-size:13px;padding:24px 16px 48px;text-align:center}
+@media (max-width:820px){.wrap{grid-template-columns:1fr;gap:0} nav.toc{position:static;padding-top:16px;border-bottom:1px solid var(--line);padding-bottom:12px}}
+</style></head><body>
+<header><div class="inner">
+<div class="eyebrow">Domain research · runner-app</div>
+<h1>Cross-training and load guardrails for runners</h1>
+<p class="decision"><strong>Decision:</strong> Which training-science rules can runner-app safely build on, as plain rules with a &quot;Why?&quot; trail? Three questions:</p>
+<div class="meta"><span>2026-10-08</span><span>Preset: standard</span><span>Validation: high</span>
+<span>20 key claims verified · 3 unverified · 1 disputed · 2 corrected</span><span>66 sources</span></div>
+<div class="legend">Confidence: <span class="badge ver">Verified</span><span class="badge med">Medium confidence</span><span class="badge low">Low confidence</span><span class="badge inf">Inference</span><span class="badge unv">Unverified</span></div>
+</div></header>
+<div class="wrap"><nav class="toc" aria-label="Contents"><div class="toc">
+<ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#1-swim-run-carry-over">1. Swim → run carry-over</a></li>
+<li><a href="#2-extra-swims-vs-rest">2. Extra swims vs. rest</a></li>
+<li><a href="#3-safety-guardrails-for-runners">3. Safety guardrails for runners</a></li>
+<li><a href="#4-measurement-validity">4. Measurement validity</a></li>
+<li><a href="#glossary">Glossary</a></li>
+<li><a href="#cross-dimension-insights">Cross-dimension insights</a></li>
+<li><a href="#contrary-evidence">Contrary evidence</a></li>
+<li><a href="#recommendations">Recommendations</a></li>
+<li><a href="#open-questions">Open questions</a></li>
+<li><a href="#source-appendix">Source appendix</a></li><li><a href="#staleness-map">Staleness map</a></li>
+</ul>
+</div>
+</nav><main><ol>
+<li>Does a swim that replaces a skipped run maintain race fitness?</li>
+<li>Do three extra swims a week help, or should the runner rest?</li>
+<li>What evidence backs the 80/20 rule, mileage-ramp warnings, and the point to tell a runner to see a professional?</li>
+</ol>
+<p><strong>Scope note:</strong> these findings shape the app's <em>recommendations</em>, not medical advice. Technical terms and statistics are defined in the Glossary.</p>
+<p><strong>How to read the tags:</strong> each key finding carries <span class="badge ver" title="Verified">Verified</span> <em class="note">Verified</em> when an independent second source confirmed it, <span class="badge med" title="Single source">Medium confidence</span> <em class="note">Single source</em> when only one study supports it, or <span class="badge unv" title="Unverified">Unverified</span> <em class="note">Unverified</em> when no source was found. Strength of evidence, such as "one small RCT", follows in the same tag.</p>
+<section class="card summary"><h2 id="executive-summary">Executive summary</h2>
+<p><strong>Yes, the app can give evidence-based answers to both of your swim questions. They are more nuanced than "swimming counts" or "swimming doesn't count".</strong></p>
+<ol>
+<li><strong>A swim in place of a skipped run (your first question):</strong><ul>
+<li><strong>One skipped run costs no measurable race fitness.</strong> VO₂max starts to fall only after about 10–14 days of <em>no running at all</em> <a class="cite" href="#src-8">[8]</a><a class="cite" href="#src-9">[9]</a><a class="cite" href="#src-7">[7]</a>.</li>
+<li><strong>Swimming is the weakest stand-in for running.</strong> In the only trial in runners, swimming <em>added</em> to a running plan improved a 3.2 km time trial by 13.2 s. Extra running improved it by 26.4 s, and the control group by 5.4 s <a class="cite" href="#src-1">[1]</a>. So a swim is worth roughly half a run for running performance, or about a third once the control group's gain is subtracted. It mostly trains swimming <a class="cite" href="#src-2">[2]</a><a class="cite" href="#src-3">[3]</a>.</li>
+<li><strong>Deep-water running and cycling are better substitutes.</strong> Deep-water running maintained running performance for 4–6 weeks in trained runners <a class="cite" href="#src-13">[13]</a><a class="cite" href="#src-14">[14]</a><a class="cite" href="#src-15">[15]</a>.</li>
+<li><strong>Missing ingredient:</strong> to keep fitness while running less, keep some hard running sessions and cut volume, not intensity <a class="cite" href="#src-6">[6]</a><a class="cite" href="#src-11">[11]</a><a class="cite" href="#src-12">[12]</a>.</li>
+</ul>
+</li>
+<li><strong>Three extra swims a week on top of all your runs (your second question):</strong> they help general fitness, add only a little running gain, are unlikely to hurt, and count as training load, not rest <a class="cite" href="#src-1">[1]</a><a class="cite" href="#src-22">[22]</a><a class="cite" href="#src-30">[30]</a>. The app wording is in R2.</li>
+<li><strong>Guardrails for the MVP:</strong><ul>
+<li><strong>Mostly easy, not strict 80/20.</strong> Polarized and pyramidal training perform the same <a class="cite" href="#src-31">[31]</a><a class="cite" href="#src-32">[32]</a>. The real risk is easy runs drifting into the middle zone <a class="cite" href="#src-33">[33]</a>.</li>
+<li><strong>Spike warning:</strong> warn when one run is more than 10% longer than your longest run of the past 30 days <a class="cite" href="#src-37">[37]</a>. A secondary flag catches weekly distance up more than 30% over 2 weeks <a class="cite" href="#src-36">[36]</a><a class="cite" href="#src-38">[38]</a>. Both are labeled "early evidence". The weekly "10% rule" is unproven <a class="cite" href="#src-35">[35]</a>.</li>
+<li><strong>See a professional:</strong> a list of bone-stress red flags, such as pinpoint bone pain, pain at rest or at night, and groin or hip pain <a class="cite" href="#src-43">[43]</a><a class="cite" href="#src-66">[66]</a>.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Biggest caveats:</strong>
+- <strong>Wrist heart rate can't be trusted in the pool.</strong> Readings run 9–44 bpm low <a class="cite" href="#src-48">[48]</a><a class="cite" href="#src-49">[49]</a>. Swim load must come from your effort rating (session RPE), or from a chest strap or goggle sensor.
+- <strong>Several rules rest on one group or one small trial</strong> (the spike warning, the swim-vs.-run trial, and the pain rule). The app's "Why?" text should say so.</p>
+<p><strong>Decision for you:</strong> where swim cross-training goes in MoSCoW. Suggested: SHOULD (sprint 2), with R3 and R4 in the MUST load model (see Recommendations).</p>
+<p>The full app rules, with their "Why?" text and evidence strength, are in Recommendations R1–R12.</p>
+</section><h2 id="1-swim-run-carry-over">1. Swim → run carry-over</h2>
+<p><strong>Swimming keeps general aerobic fitness but transfers only partly to running. A single swapped run is harmless, and weeks of swaps need a different substitute or a gradual return.</strong></p>
+<p><strong>Detraining (how fast fitness fades):</strong>
+- <strong>Stopping completely:</strong>
+    - After 14 days without training, distance runners' VO₂max fell about 4%, but running economy didn't change <a class="cite" href="#src-8">[8]</a>.
+    - Female middle-distance runners showed no change at day 5. Their VO₂max dropped by day 10, and their 2,400 m time was 21.5 s slower by day 15 <a class="cite" href="#src-9">[9]</a>.
+    - In another study, VO₂max fell 7% in the first 21 days <a class="cite" href="#src-7">[7]</a>. <span class="badge ver" title="Verified across three labs.">Verified</span> <em class="note">Verified across three labs.</em>
+- <strong>Keep intensity, cut volume.</strong> Fitness is kept when intensity is maintained and frequency is cut only moderately. Volume can drop a lot <a class="cite" href="#src-6">[6]</a>. Runners who cut volume by 70% but kept some hard work held their 5 km time for 3 weeks <a class="cite" href="#src-10">[10]</a>. Cutting duration by up to two-thirds kept VO₂max <a class="cite" href="#src-11">[11]</a>, but cutting <em>intensity</em> lost it <a class="cite" href="#src-12">[12]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em></p>
+<p><strong>How well swimming transfers:</strong>
+- <strong>Trial in runners.</strong> In 30 trained runners over 8 weeks, adding 10% extra load as swimming improved 3.2 km time by 13.2 s. The same extra load as running improved it by 26.4 s, and the control group by 5.4 s <a class="cite" href="#src-1">[1]</a>. Treadmill VO₂max and running economy didn't change in any group. Only the extra-running group improved its lactate threshold pace <a class="cite" href="#src-1">[1]</a>. <span class="badge ver" title="Verified. One small RCT, testing swims added to running rather than replacing it.">Verified</span> <em class="note">Verified. One small RCT, testing swims added to running rather than replacing it.</em>
+    - An earlier draft of this research said added swimming gave <em>no</em> running gain. Checking the original paper overturned that.
+- <strong>Specificity.</strong> Ten weeks of swim training raised swimming VO₂max but not running VO₂max <a class="cite" href="#src-2">[2]</a>. A review concludes that swim training "may result in minimum transfer" and that cross-training "never exceed[s]" sport-specific training <a class="cite" href="#src-3">[3]</a>. Modeling in elite triathletes found swimming "highly specific" <a class="cite" href="#src-4">[4]</a>. <span class="badge ver" title="Verified. Three independent groups.">Verified</span> <em class="note">Verified. Three independent groups.</em>
+    - Moderately trained people may still benefit from a different activity <a class="cite" href="#src-6">[6]</a>. A university thesis reports that swim training improved running in untrained people <a class="cite" href="#src-64">[64]</a>. <span class="badge med" title="Single source, seen only as a search snippet.">Medium confidence</span> <em class="note">Single source, seen only as a search snippet.</em>
+- <strong>No replacement trial exists.</strong> No retrieved study had runners <em>replace</em> runs with swims.</p>
+<p><strong>Better substitutes:</strong>
+- Deep-water running maintained VO₂max, threshold, and running economy for 6 weeks <a class="cite" href="#src-13">[13]</a>. Four weeks of deep-water running alone maintained 5 km time <a class="cite" href="#src-14">[14]</a>. Water running and cycling both maintained 2-mile time over 6 weeks, with a small VO₂max dip in all groups <a class="cite" href="#src-15">[15]</a>. A systematic review finds deep-water running has effects on aerobic fitness similar to land training <a class="cite" href="#src-60">[60]</a>. <span class="badge ver" title="Verified across three labs.">Verified</span> <em class="note">Verified across three labs.</em>
+- A 2026 meta-analysis found no clear difference between cycling-only and running-only training, but warns the evidence doesn't prove the two are interchangeable <a class="cite" href="#src-16">[16]</a>.
+- <strong>Ranking:</strong> deep-water running ≈ cycling &gt; swimming. This is an inference: no head-to-head trial compares them with swimming.</p>
+<p><strong>Swim-to-run conversions:</strong>
+- Ratios like "1.5 km swim ≈ 6 km run" (4:1) come from coaches, with no studies cited <a class="cite" href="#src-17">[17]</a>. No peer-reviewed validation of any swim-to-run equivalence was found. <span class="badge unv" title="Unverified: absence of evidence.">Unverified</span> <em class="note">Unverified: absence of evidence.</em></p>
+<p><strong>Bones and tendons:</strong>
+- Swimming gives a weak bone-building stimulus compared with weight-bearing sport <a class="cite" href="#src-18">[18]</a>.
+- With a fully unloaded leg, tendon collagen production fell about 55% by day 10 <a class="cite" href="#src-19">[19]</a>, and Achilles tendon stiffness fell 17% after 4 weeks <a class="cite" href="#src-20">[20]</a>. Those studies used complete unloading, so they show the worst case. Swimming plus daily walking unloads far less.
+- <strong>Implication:</strong> after weeks of swim-only training, ease back into running.</p>
+<h2 id="2-extra-swims-vs-rest">2. Extra swims vs. rest</h2>
+<p><strong>Extra swims are a small aerobic plus, not a running booster. Easy swims are about as good as rest for recovery. All swims count toward total load.</strong></p>
+<p><strong>Added cross-training:</strong>
+- Added swimming gave about half the running gain of added running, or about a third net of the control group (see §1) <a class="cite" href="#src-1">[1]</a>.
+- In another study, runners who increased training through cross-training or through running only improved 5 km time to a similar extent. The cross-training mode wasn't confirmed and may have been cycling <a class="cite" href="#src-21">[21]</a>. <span class="badge med" title="Single source. Medium-low confidence.">Medium confidence</span> <em class="note">Single source. Medium-low confidence.</em></p>
+<p><strong>Active recovery vs. rest:</strong>
+- A meta-analysis of 99 studies found active recovery reduced muscle soreness (DOMS) with a moderate-to-large effect (SMD −0.94), but only shortly after exercise. It had no effect on perceived fatigue <a class="cite" href="#src-22">[22]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em>
+- A swim 10 hours after hard intervals improved next-day run endurance in 9 triathletes. That swim was hard (20 × 100 m), not easy <a class="cite" href="#src-23">[23]</a>. <span class="badge med" title="Single source. Not replicated.">Medium confidence</span> <em class="note">Single source. Not replicated.</em>
+- No retrieved study showed an easy swim harms recovery.</p>
+<p><strong>Overreaching and overtraining:</strong>
+- The ECSS/ACSM consensus defines three stages <a class="cite" href="#src-24">[24]</a><a class="cite" href="#src-25">[25]</a>:
+    - <strong>Functional overreaching:</strong> a short performance dip that ends in improvement.
+    - <strong>Non-functional overreaching:</strong> recovery takes weeks to months.
+    - <strong>Overtraining syndrome:</strong> months or more, and diagnosed only after illness is ruled out.
+- No single marker meets all the criteria <a class="cite" href="#src-24">[24]</a>. Key symptoms are fatigue, performance decline, and mood disturbance <a class="cite" href="#src-24">[24]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em>
+- <strong>What to monitor.</strong> Self-report measures respond to load "with superior sensitivity and consistency" compared with objective measures <a class="cite" href="#src-27">[27]</a>. In recreational runners, nightly heart rate, "readiness to train", and an HR-to-power index best separated overreached runners <a class="cite" href="#src-26">[26]</a>. <span class="badge ver" title="Verified that the two kinds of signal work together. The claim that a questionnaire beats HRV was disputed, because neither replaces the other.">Verified</span> <em class="note">Verified that the two kinds of signal work together. The claim that a questionnaire beats HRV was disputed, because neither replaces the other.</em> HRV evidence is in §4.</p>
+<p><strong>Rest days:</strong>
+- No peer-reviewed rule sets the number of rest days for recreational runners, and none says whether a swim day counts as rest. <span class="badge unv" title="Unverified: absence of evidence. Rest-day advice in the app is practice-based.">Unverified</span> <em class="note">Unverified: absence of evidence. Rest-day advice in the app is practice-based.</em></p>
+<p><strong>Energy (REDs):</strong>
+- REDs (Relative Energy Deficiency in Sport) is health and performance harm from not eating enough for the training done. It affects women and men <a class="cite" href="#src-29">[29]</a>.
+- In 109 recreational women, each extra weekly hour of exercise multiplied the odds of being at risk of under-fueling by 1.13 <a class="cite" href="#src-30">[30]</a>. <span class="badge med" title="Single source. Cross-sectional association, questionnaire-screened risk, women only, counts all exercise hours.">Medium confidence</span> <em class="note">Single source. Cross-sectional association, questionnaire-screened risk, women only, counts all exercise hours.</em>
+- Missed periods and bone stress injuries are screening indicators <a class="cite" href="#src-29">[29]</a>. <span class="badge ver" title="Partly verified. The full clinical checklist wasn&#x27;t retrieved.">Verified</span> <em class="note">Partly verified. The full clinical checklist wasn't retrieved.</em></p>
+<h2 id="3-safety-guardrails-for-runners">3. Safety guardrails for runners</h2>
+<p><strong>Coach "mostly easy" and watch single-run spikes. Send runners with bone-stress red flags to a professional. Taper 2–3 weeks.</strong> The taper evidence feeds the "Taper Jail" race-week feature.</p>
+<p><strong>Intensity distribution (80/20):</strong>
+- <strong>Polarized vs. pyramidal.</strong> An individual-data network meta-analysis (13 studies, 348 athletes) found no difference in VO₂max or time-trial performance <a class="cite" href="#src-31">[31]</a>. A subgroup hint favored pyramidal for recreational athletes' VO₂max. An independent meta-analysis (17 studies) found a small polarized advantage for VO₂peak only in highly trained athletes, and no difference in recreational athletes <a class="cite" href="#src-32">[32]</a>. <span class="badge ver" title="Verified. The pyramidal hint is low-certainty.">Verified</span> <em class="note">Verified. The pyramidal hint is low-certainty.</em>
+- <strong>Middle-zone drift is the real risk.</strong> In 30 recreational runners, polarized training beat a threshold-heavy plan for 10 km time (−5.0% vs. −3.6%) <a class="cite" href="#src-33">[33]</a>, although the difference between groups wasn't statistically significant. <span class="badge med" title="Single source. Small RCT. Low-medium confidence.">Medium confidence</span> <em class="note">Single source. Small RCT. Low-medium confidence.</em> A trial in recreational marathoners is under way <a class="cite" href="#src-65">[65]</a>.
+- <strong>How to count matters.</strong> Counting by session labels triples the apparent hard share compared with counting minutes in zone <a class="cite" href="#src-34">[34]</a>. The app must state which method it uses. <span class="badge med" title="Single source, in elite skiers.">Medium confidence</span> <em class="note">Single source, in elite skiers.</em></p>
+<p><strong>Mileage ramp:</strong>
+- <strong>Single-run spikes.</strong> In 5,205 runners with 588,000 sessions, a run longer than the longest run of the past 30 days raised injury hazard:
+    - 10–30% longer: HRR 1.64
+    - 30–100% longer: HRR 1.52
+    - more than 100% longer: HRR 2.28</p>
+<p>Weekly change wasn't associated with injury, and a high ACWR was linked to <em>lower</em> risk (HRR 0.75) <a class="cite" href="#src-37">[37]</a>. <span class="badge ver" title="Verified figures. One research group, self-reported injuries, 78% male, mean age 46. Not replicated. The 10% is a category edge, not a tested cut-off.">Verified</span> <em class="note">Verified figures. One research group, self-reported injuries, 78% male, mean age 46. Not replicated. The 10% is a category edge, not a tested cut-off.</em>
+- <strong>Weekly 10% rule: unproven.</strong>
+    - A 10%-rule program didn't reduce injuries in 532 novices (20.8% vs. 20.3%) <a class="cite" href="#src-35">[35]</a>.
+    - Increasing weekly distance by more than 30% over 2 weeks showed a non-significant trend toward more overuse injuries (HR 1.59, p = 0.07) <a class="cite" href="#src-36">[36]</a>. <span class="badge ver" title="Verified, after correction: an earlier draft called this an association.">Verified</span> <em class="note">Verified, after correction: an earlier draft called this an association.</em>
+    - Increases of 20–60% raised short-term risk in half-marathoners <a class="cite" href="#src-38">[38]</a>. <span class="badge med" title="Single source. Wide confidence interval.">Medium confidence</span> <em class="note">Single source. Wide confidence interval.</em></p>
+<p><strong>Injury baseline:</strong>
+- Novices get 17.8 injuries per 1,000 hours, compared with 7.7 for recreational runners <a class="cite" href="#src-39">[39]</a>. Previous injury is the strongest risk factor <a class="cite" href="#src-40">[40]</a><a class="cite" href="#src-41">[41]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em> This is why R6 and R9 should weigh more for novices and for runners with a past injury.</p>
+<p><strong>Pain rules and red flags:</strong>
+- <strong>Pain-monitoring model.</strong> Pain up to 5/10 during activity is acceptable if it settles by the next morning and doesn't build week to week. In 38 patients with Achilles tendinopathy, this model gave results similar to 6 weeks of rest <a class="cite" href="#src-42">[42]</a>. <span class="badge med" title="Single source. Tendon pain only: it is not validated for bone pain.">Medium confidence</span> <em class="note">Single source. Tendon pain only: it is not validated for bone pain.</em>
+- <strong>Bone stress red flags:</strong>
+    - pinpoint bone tenderness (the "most significant" finding) <a class="cite" href="#src-43">[43]</a>
+    - pain that comes earlier in each run or builds during it
+    - pain at rest or at night
+    - pain on hopping
+    - local swelling
+    - a new limp</p>
+<p>Groin, hip, or front-of-thigh pain suggests a femoral neck injury and needs <strong>urgent</strong> referral. High-risk sites are the femoral neck, the navicular (midfoot), the base of the 5th metatarsal, and the front of the shin <a class="cite" href="#src-43">[43]</a>. The symptom list also draws on a clinician's guide for runners <a class="cite" href="#src-66">[66]</a>. A 2025 international consensus exists, but its diagnostic statements weren't retrieved <a class="cite" href="#src-44">[44]</a>. <span class="badge med" title="Single clinical review plus a clinician blog. Medium confidence: the retrieved review text didn&#x27;t show every symptom listed.">Medium confidence</span> <em class="note">Single clinical review plus a clinician blog. Medium confidence: the retrieved review text didn't show every symptom listed.</em></p>
+<p><strong>Taper:</strong>
+- The best taper is about 2 weeks: cut volume by 41–60% and keep intensity and frequency <a class="cite" href="#src-45">[45]</a><a class="cite" href="#src-46">[46]</a>.
+- Data on 158,000 recreational marathoners favor a strict, progressive taper of up to 3 weeks <a class="cite" href="#src-47">[47]</a>. <span class="badge ver" title="Verified. The marathon data are observational.">Verified</span> <em class="note">Verified. The marathon data are observational.</em>
+- "The hay is in the barn" has no source that quantifies when new training stops paying off. <span class="badge unv" title="Unverified.">Unverified</span> <em class="note">Unverified.</em></p>
+<h2 id="4-measurement-validity">4. Measurement validity</h2>
+<p><strong>Use effort ratings for swims and the runner's own measured max heart rate for runs. Show heart-rate variability only as a personal trend.</strong></p>
+<p><strong>Wrist heart rate:</strong>
+- <strong>In the pool:</strong> wrist readings in water were 17–30% off (Garmin −44 bpm, Polar −14 bpm on average) <a class="cite" href="#src-48">[48]</a>. An older wristwatch had limits of agreement of −53 to +34 bpm, while a goggle (temple) sensor did well <a class="cite" href="#src-49">[49]</a>. A third study found the wrist far worse than the temple <a class="cite" href="#src-62">[62]</a>. <span class="badge ver" title="Verified, but small studies.">Verified</span> <em class="note">Verified, but small studies.</em>
+- <strong>Apple Watch:</strong> its only water result (MAE 0.9 bpm) came from an aquatic treadmill, not lap swimming <a class="cite" href="#src-50">[50]</a>. No pool validation of current Apple, Garmin, or Huawei watches was found.
+- <strong>Running:</strong> wrist heart rate is reasonable. Apple Watch SE error was 3.1%, but individual accuracy varied widely <a class="cite" href="#src-51">[51]</a>.</p>
+<p><strong>Effort ratings (RPE):</strong>
+- Session RPE is valid and reliable across sports and levels <a class="cite" href="#src-53">[53]</a>. In swimmers it correlated with heart-rate load at r = 0.55–0.94 <a class="cite" href="#src-52">[52]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em>
+- Sleep loss raises RPE for the same work (SMD 0.51 overall, 0.39 in athletes) <a class="cite" href="#src-54">[54]</a>, so a high rating on an easy day may reflect poor sleep. Athletes often sleep less than 7 hours a night, and the consensus advises an individual approach to sleep need <a class="cite" href="#src-28">[28]</a>.
+- No source was found on heat or mood effects.</p>
+<p><strong>Max heart rate and zones:</strong>
+- Every age formula has about ±10 bpm individual error (220 − age RMSE 9.8, Tanaka 9.2, in 4,043 runners) <a class="cite" href="#src-55">[55]</a>. Women's measured max sits below the formulas <a class="cite" href="#src-56">[56]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em>
+- In 1,411 runners, VT1 (the top of the easy zone) sat at 85% of max heart rate, and VT2 at 94% <a class="cite" href="#src-58">[58]</a>. <span class="badge med" title="Single source, though large.">Medium confidence</span> <em class="note">Single source, though large.</em> This contradicts the 65–75% often quoted by vendors.
+- The 3-zone model (easy below VT1, moderate between thresholds, hard above VT2) is the simplest practical model <a class="cite" href="#src-59">[59]</a>.</p>
+<p><strong>Resting heart rate and HRV from the watch:</strong>
+- Apple Watch resting heart rate matched a chest strap almost exactly. Its HRV had 29% error and is fit only for personal trends <a class="cite" href="#src-57">[57]</a>. <span class="badge ver" title="Verified.">Verified</span> <em class="note">Verified.</em>
+- Interpreting HRV needs context from how the runner feels: in one study it rose both with overreaching and with improved performance <a class="cite" href="#src-63">[63]</a>.</p>
+<h2 id="glossary">Glossary</h2>
+<p>Plain-English terms the app can show runners, followed by the statistics used in this report. Definitions are plain-language paraphrases. The sources show where each term is used, not a verbatim definition.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Plain-English definition</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VO₂max</td>
+<td>The most oxygen your body can use per minute in all-out effort: the size of your aerobic engine.</td>
+<td><a class="cite" href="#src-3">[3]</a><a class="cite" href="#src-7">[7]</a></td>
+</tr>
+<tr>
+<td>Running economy</td>
+<td>How much oxygen you need to run at a given pace. Lower is better.</td>
+<td><a class="cite" href="#src-8">[8]</a><a class="cite" href="#src-13">[13]</a></td>
+</tr>
+<tr>
+<td>Lactate threshold / VT1, VT2</td>
+<td>VT1 is where breathing first picks up and the easy zone ends. VT2 is where effort becomes hard to sustain.</td>
+<td><a class="cite" href="#src-58">[58]</a><a class="cite" href="#src-59">[59]</a></td>
+</tr>
+<tr>
+<td>Specificity</td>
+<td>Your body adapts mostly to the exact activity you train.</td>
+<td><a class="cite" href="#src-2">[2]</a><a class="cite" href="#src-3">[3]</a></td>
+</tr>
+<tr>
+<td>Cross-training</td>
+<td>Training in a different sport to support your main one.</td>
+<td><a class="cite" href="#src-1">[1]</a></td>
+</tr>
+<tr>
+<td>Deep-water running</td>
+<td>Running motion in deep water with a float belt, feet off the bottom.</td>
+<td><a class="cite" href="#src-13">[13]</a><a class="cite" href="#src-14">[14]</a></td>
+</tr>
+<tr>
+<td>Detraining</td>
+<td>Losing fitness when training stops or drops sharply.</td>
+<td><a class="cite" href="#src-5">[5]</a></td>
+</tr>
+<tr>
+<td>Session RPE</td>
+<td>Your 0–10 rating of how hard a session felt, multiplied by its minutes, gives a load score.</td>
+<td><a class="cite" href="#src-53">[53]</a></td>
+</tr>
+<tr>
+<td>Training load (internal vs. external)</td>
+<td>External is the work done (distance, time). Internal is how hard your body found it (heart rate, effort).</td>
+<td><a class="cite" href="#src-61">[61]</a></td>
+</tr>
+<tr>
+<td>Polarized / pyramidal (TID)</td>
+<td>Ways of splitting training across intensities (training intensity distribution). Polarized: mostly easy, some hard, little in between. Pyramidal: mostly easy, less moderate, least hard.</td>
+<td><a class="cite" href="#src-31">[31]</a><a class="cite" href="#src-59">[59]</a></td>
+</tr>
+<tr>
+<td>Functional overreaching</td>
+<td>A short planned dip in performance that bounces back better after rest.</td>
+<td><a class="cite" href="#src-24">[24]</a></td>
+</tr>
+<tr>
+<td>Overtraining syndrome</td>
+<td>A long-lasting breakdown in performance and health, diagnosed only after ruling out illness.</td>
+<td><a class="cite" href="#src-24">[24]</a></td>
+</tr>
+<tr>
+<td>Active recovery</td>
+<td>Gentle exercise instead of complete rest.</td>
+<td><a class="cite" href="#src-22">[22]</a></td>
+</tr>
+<tr>
+<td>DOMS</td>
+<td>Muscle soreness that peaks 1–3 days after hard or unfamiliar exercise.</td>
+<td><a class="cite" href="#src-22">[22]</a></td>
+</tr>
+<tr>
+<td>REDs / LEA</td>
+<td>Health and performance harm from eating too little for the training you do (low energy availability). CAT2 is the IOC's checklist for spotting it.</td>
+<td><a class="cite" href="#src-29">[29]</a></td>
+</tr>
+<tr>
+<td>HRV</td>
+<td>Heart rate variability: the beat-to-beat variation in heart rhythm, used as a recovery signal.</td>
+<td><a class="cite" href="#src-57">[57]</a><a class="cite" href="#src-63">[63]</a></td>
+</tr>
+<tr>
+<td>Bone stress injury</td>
+<td>Bone damaged by repeated loading faster than it can repair, from stress reaction to stress fracture.</td>
+<td><a class="cite" href="#src-43">[43]</a><a class="cite" href="#src-44">[44]</a></td>
+</tr>
+<tr>
+<td>Single-run spike</td>
+<td>A run longer than your longest run in the past 30 days.</td>
+<td><a class="cite" href="#src-37">[37]</a></td>
+</tr>
+<tr>
+<td>ACWR</td>
+<td>Acute:chronic workload ratio: last week's load divided by your longer-term average. High values did not predict higher injury risk in <a class="cite" href="#src-37">[37]</a>.</td>
+<td><a class="cite" href="#src-37">[37]</a></td>
+</tr>
+<tr>
+<td>Taper</td>
+<td>Cutting training volume before a race so fatigue clears while fitness stays.</td>
+<td><a class="cite" href="#src-45">[45]</a></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Reading the numbers:</strong>
+- <strong>RCT:</strong> randomized controlled trial, where people are assigned to groups by chance.
+- <strong>HR / HRR:</strong> hazard ratio, how much faster injuries happen in one group than another. 1.64 means about 64% higher risk.
+- <strong>SMD:</strong> standardized mean difference, an effect size across studies. About 0.2 is small, 0.5 medium, and 0.8 large.
+- <strong>MAE / MAPE / RMSE:</strong> the average error of a device or formula, in beats per minute or percent.
+- <strong>p = 0.07:</strong> short of the usual 0.05 cut-off, so the result is a trend, not a confirmed effect.</p>
+<h2 id="cross-dimension-insights">Cross-dimension insights</h2>
+<ol>
+<li><strong>Your two swim questions share one answer: the swim is general fitness, not running fitness.</strong> Swimming transfers poorly to running (§1), adds little running gain on top of a plan (§2), and its heart-rate data is unreliable (§4). So the app should log swims with session RPE, add them to <em>total</em> load for fatigue and fueling (§2), and <strong>not</strong> count them as running fitness in race-feasibility projections.</li>
+<li><strong>"Keep intensity" connects detraining, the taper, and the 80/20 rule.</strong> Fitness holds when intensity stays and volume drops (§1). That's also how a good taper works (§3). The 80/20 evidence says the <em>easy</em> part must really be easy (§3). Together they give the app one coherent message: protect a little hard running each week, keep easy days easy, and treat volume as the flexible part.</li>
+<li><strong>The runner is the best sensor.</strong> Self-report beats or complements objective markers for overreaching (§2), effort ratings are the only valid swim load (§4), and age-based max heart rate is ±10 bpm off (§4). That supports the brainstorm's principle of personal baselines and runner-reported signals over population formulas.</li>
+<li><strong>Show the evidence strength next to each warning.</strong> The weakest evidence sits under the most visible warnings (§1, §3).</li>
+</ol>
+<h2 id="contrary-evidence">Contrary evidence</h2>
+<p>The red-team pass ran on the four major conclusions. All survived, each with a caveat that is now written into the text above:
+- <strong>Swimming is a poor substitute.</strong> The challenge: it gave about half the gain of running in trained runners <a class="cite" href="#src-1">[1]</a>, and a thesis in untrained people found real transfer <a class="cite" href="#src-64">[64]</a>. No head-to-head trial compares deep-water running, cycling, and swimming.
+- <strong>Single-run spike warning.</strong> The challenge: one exploratory cohort from one group, self-reported injuries, and a cut-off that is a category edge, not a validated threshold. The 10–30% band showed <em>more</em> risk than the 30–100% band <a class="cite" href="#src-37">[37]</a>. Weekly increases showed a trend toward injury <a class="cite" href="#src-36">[36]</a><a class="cite" href="#src-38">[38]</a>, so the app keeps a secondary weekly flag.
+- <strong>Mostly easy over strict 80/20.</strong> The challenge: the claim that recreational runners do better on pyramidal rests on one VO₂max subgroup <a class="cite" href="#src-31">[31]</a>, and an independent meta-analysis finds no difference <a class="cite" href="#src-32">[32]</a>. Polarized beat threshold-heavy training in recreational runners <a class="cite" href="#src-33">[33]</a>, so the app guards against middle-zone drift.
+- <strong>Wrist HR in the pool.</strong> The challenge: one Apple Watch study showed good accuracy in water exercise, but not lap swimming <a class="cite" href="#src-50">[50]</a>. The app accepts heart rate for swims only from a chest strap or goggle sensor <a class="cite" href="#src-49">[49]</a>.</p>
+<h2 id="recommendations">Recommendations</h2>
+<p>Each rule below is written as the app's plain-language recommendation, with its "Why?" and the strength of the evidence behind it.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>App rule</th>
+<th>"Why?" shown to the runner</th>
+<th>Evidence basis</th>
+<th>Feeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td><strong>Skipped run, swim instead:</strong> "No fitness lost from one swap. For several swaps in a row, keep one hard run a week, or try deep-water running or cycling."</td>
+<td>One missed run makes no measurable difference. VO₂max falls only after about 10–14 days without running <a class="cite" href="#src-8">[8]</a><a class="cite" href="#src-9">[9]</a>. Swimming gives about half the running benefit, or a third net of controls <a class="cite" href="#src-1">[1]</a>. Deep-water running maintained running fitness for 4–6 weeks <a class="cite" href="#src-13">[13]</a><a class="cite" href="#src-14">[14]</a><a class="cite" href="#src-15">[15]</a>.</td>
+<td>High for detraining; medium for swim (one RCT)</td>
+<td>PRD: cross-training requirement</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><strong>Extra swims on top of a full plan:</strong> "Good for general fitness and fine for recovery. They count as training load, not rest. If you feel run-down, keep at least one true rest day a week."</td>
+<td>Added swims gave about half the gain of extra running <a class="cite" href="#src-1">[1]</a>. Easy activity eases soreness briefly <a class="cite" href="#src-22">[22]</a>. More weekly hours raise under-fueling risk <a class="cite" href="#src-30">[30]</a>. The rest-day number is practice, not evidence.</td>
+<td>Medium</td>
+<td>PRD: cross-training; load model</td>
+</tr>
+<tr>
+<td>R3</td>
+<td><strong>Swim load = session RPE × minutes.</strong> Use heart rate for swims only from a chest strap or goggle sensor.</td>
+<td>Wrist heart rate in water reads 9–44 bpm low <a class="cite" href="#src-48">[48]</a><a class="cite" href="#src-49">[49]</a>. Session RPE is valid in swimmers <a class="cite" href="#src-52">[52]</a><a class="cite" href="#src-53">[53]</a>.</td>
+<td>High</td>
+<td>Architecture: load model (confirms technical-research R3)</td>
+</tr>
+<tr>
+<td>R4</td>
+<td><strong>Never convert swims into "running km."</strong> Show swims as their own sport in total load.</td>
+<td>The common 4:1 ratio comes from coaches, with no studies cited <a class="cite" href="#src-17">[17]</a>. This research found no validated conversion.</td>
+<td>High (absence of evidence)</td>
+<td>UX: fitness view</td>
+</tr>
+<tr>
+<td>R5</td>
+<td><strong>Return-to-run nudge</strong> after 2 or more weeks of mostly swimming: rebuild long-run distance gradually.</td>
+<td>Swimming builds bone less than weight-bearing sport <a class="cite" href="#src-18">[18]</a>, and unloaded tendons lose stiffness <a class="cite" href="#src-19">[19]</a><a class="cite" href="#src-20">[20]</a>. A single-run spike raises injury risk <a class="cite" href="#src-37">[37]</a>.</td>
+<td>Medium (inference from unloading studies)</td>
+<td>PRD: body map / ramp</td>
+</tr>
+<tr>
+<td>R6</td>
+<td><strong>Primary ramp warning:</strong> a run more than 10% longer than your longest run in the past 30 days. <strong>Secondary:</strong> weekly distance up more than 30% over 2 weeks. Label both "early evidence".</td>
+<td>Single-run spikes predicted injury in 5,205 runners <a class="cite" href="#src-37">[37]</a>. The weekly 10% rule didn't prevent injury <a class="cite" href="#src-35">[35]</a>. Big weekly increases showed a trend <a class="cite" href="#src-36">[36]</a><a class="cite" href="#src-38">[38]</a>.</td>
+<td>Medium (one group, not replicated)</td>
+<td>PRD: MUST #5 (mileage-ramp warning)</td>
+</tr>
+<tr>
+<td>R7</td>
+<td><strong>Mostly easy, not strict 80/20.</strong> Count minutes in zone (and say so). Flag easy runs drifting above the easy-zone limit.</td>
+<td>Polarized ≈ pyramidal training intensity distribution <a class="cite" href="#src-31">[31]</a><a class="cite" href="#src-32">[32]</a>. Threshold-heavy training did worse in recreational runners, though not significantly <a class="cite" href="#src-33">[33]</a>. Counting by sessions triples the apparent hard share <a class="cite" href="#src-34">[34]</a>.</td>
+<td>High (intensity distribution); low-medium (drift)</td>
+<td>PRD: MUST #4 (80/20 view)</td>
+</tr>
+<tr>
+<td>R8</td>
+<td><strong>Easy-zone limit from the runner's own max heart rate</strong>, with an override from a measured peak (for example, from a race or a hill effort). Default the easy cap conservatively at about 80% of max until the runner calibrates.</td>
+<td>Age formulas are ±10 bpm off <a class="cite" href="#src-55">[55]</a><a class="cite" href="#src-56">[56]</a>. VT1 averages 85% of max heart rate in runners <a class="cite" href="#src-58">[58]</a>.</td>
+<td>Medium (VT1 single study)</td>
+<td>Architecture: zones; brief: personal baselines</td>
+</tr>
+<tr>
+<td>R9</td>
+<td><strong>See-a-professional triggers:</strong> pinpoint bone pain, pain at rest or at night, pain earlier in each run, hop pain, swelling, or a new limp means stop and get assessed. <strong>Groin, hip, or front-of-thigh pain</strong> means urgent. <strong>Missed periods or recurrent bone stress injuries</strong> mean see a professional about under-fueling.</td>
+<td>Clinical review <a class="cite" href="#src-43">[43]</a>; clinician guide <a class="cite" href="#src-66">[66]</a>; REDs consensus <a class="cite" href="#src-29">[29]</a>.</td>
+<td>Medium (single clinical review; consensus details partial)</td>
+<td>PRD: MUST #5 (escalation)</td>
+</tr>
+<tr>
+<td>R10</td>
+<td><strong>Muscle and tendon pain rule:</strong> pain up to 5/10 that's gone by the next morning, and not building week to week, is OK to keep training on. <strong>Never apply this to bone pain</strong> (R9 overrides).</td>
+<td>Pain-monitoring RCT (tendon) <a class="cite" href="#src-42">[42]</a>.</td>
+<td>Medium (one small RCT)</td>
+<td>SHOULD: good/bad pain translator</td>
+</tr>
+<tr>
+<td>R11</td>
+<td><strong>Fatigue check-in:</strong> ask about readiness, sleep, and soreness. Show resting heart rate trends. Show HRV only as a personal trend. When effort ratings are high, show them next to last night's sleep.</td>
+<td>Self-report is sensitive to overload <a class="cite" href="#src-27">[27]</a><a class="cite" href="#src-26">[26]</a>. Apple Watch resting HR is accurate, but its HRV isn't <a class="cite" href="#src-57">[57]</a>. Sleep loss raises RPE <a class="cite" href="#src-54">[54]</a>.</td>
+<td>Medium-high</td>
+<td>PRD: body map check-in</td>
+</tr>
+<tr>
+<td>R12</td>
+<td><strong>Taper: 2–3 weeks</strong>, cut volume by 40–60%, keep intensity.</td>
+<td>Meta-analyses <a class="cite" href="#src-45">[45]</a><a class="cite" href="#src-46">[46]</a>; marathon data <a class="cite" href="#src-47">[47]</a>.</td>
+<td>High</td>
+<td>SHOULD: race week / Taper Jail</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Suggestion for your MoSCoW decision (the swim cross-training slot left open by the technical research):</strong> R1–R4 make the swim feature cheap to build on top of the load model already planned. A sensible slot is <strong>SHOULD (sprint 2)</strong>, with R3 and R4 as part of the MUST load model so swims are logged correctly from day one. This is your call.</p>
+<h2 id="open-questions">Open questions</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>How to answer it</th>
+<th>Blocks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does <em>replacing</em> runs with swims (not adding them) hold running fitness for recreational runners?</td>
+<td>No trial exists. The app could collect anonymized outcomes later (a COULD).</td>
+<td>R1 wording</td>
+</tr>
+<tr>
+<td>Does the single-run spike rule replicate outside the Aarhus group, and in women and novices?</td>
+<td>Watch for new cohorts (see Staleness map).</td>
+<td>R6 confidence</td>
+</tr>
+<tr>
+<td>Does polarized beat pyramidal in recreational marathoners?</td>
+<td>Results of the 2026 trial <a class="cite" href="#src-65">[65]</a> (see Staleness map).</td>
+<td>R7 confidence</td>
+</tr>
+<tr>
+<td>Exact diagnostic statements of the 2025 bone stress injury consensus</td>
+<td>Read the BJSM full text (paywalled) <a class="cite" href="#src-44">[44]</a>.</td>
+<td>R9 wording</td>
+</tr>
+<tr>
+<td>Is current Apple Watch heart rate accurate in lap swimming?</td>
+<td>No study yet. Re-check annually.</td>
+<td>R3</td>
+</tr>
+<tr>
+<td>Can VT1 be estimated in the field (talk test or similar) for zone setup?</td>
+<td>Not sourced in this run. A small follow-up search is needed.</td>
+<td>R8</td>
+</tr>
+<tr>
+<td>How many rest days do recreational runners need?</td>
+<td>No peer-reviewed rule exists. The app presents this as practice, not evidence.</td>
+<td>R2 wording</td>
+</tr>
+<tr>
+<td>When does new training stop paying off before race day ("the hay is in the barn")?</td>
+<td>Not quantified in the literature found.</td>
+<td>Taper messaging</td>
+</tr>
+</tbody>
+</table></div>
+<details class="appendix" id="source-appendix"><summary><h2>Source appendix (66 sources)</h2></summary>
+<div class="tw"><table class="sources"><thead><tr><th>#</th><th>Supports</th><th>Publisher</th><th>Published</th><th>Accessed</th><th>Confidence</th></tr></thead>
+<tbody><tr id="src-1"><td>[1]</td><td>Added swim vs added run vs control, 3.2 km TT (Foster et al., Eur J Appl Physiol 70:367)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/7649149/" target="_blank" rel="noopener">PubMed</a></td><td>1995</td><td>2026-10-08</td><td>medium (RCT n=30; verified)</td></tr><tr id="src-2"><td>[2]</td><td>Swim training raises swim but not run VO₂max (Magel et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/1110232/" target="_blank" rel="noopener">J Appl Physiol / PubMed</a></td><td>1975</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-3"><td>[3]</td><td>Cross-training transfer review; swimming minimal transfer (Tanaka)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/7871294/" target="_blank" rel="noopener">Sports Medicine / PubMed</a></td><td>1994</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-4"><td>[4]</td><td>Swimming highly specific in triathletes (Millet et al.)</td><td><a href="https://doi.org/10.1055/s-2002-19276" target="_blank" rel="noopener">Int J Sports Med</a></td><td>2002</td><td>2026-10-08</td><td>low-medium (n=4)</td></tr><tr id="src-5"><td>[5]</td><td>Detraining Part I: short-term losses (Mujika &amp; Padilla)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/10966148/" target="_blank" rel="noopener">Sports Medicine / PubMed</a></td><td>2000</td><td>2026-10-08</td><td>high</td></tr><tr id="src-6"><td>[6]</td><td>Detraining Part II: keep intensity, cut volume (Mujika &amp; Padilla)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/10999420/" target="_blank" rel="noopener">Sports Medicine / PubMed</a></td><td>2000</td><td>2026-10-08</td><td>high</td></tr><tr id="src-7"><td>[7]</td><td>VO₂max −7% in 21 d of cessation (Coyle et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/6511559/" target="_blank" rel="noopener">J Appl Physiol / PubMed</a></td><td>1984</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-8"><td>[8]</td><td>14 d cessation: VO₂max −4%, running economy unchanged (Houmard et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/1487339/" target="_blank" rel="noopener">Int J Sports Med / PubMed</a></td><td>1992</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-9"><td>[9]</td><td>Female runners: VO₂max drop by day 10 (Doherty et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/12930193/" target="_blank" rel="noopener">J Strength Cond Res / PubMed</a></td><td>2003</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-10"><td>[10]</td><td>−70% volume with intensity kept maintains 5 km (Houmard et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/2318562/" target="_blank" rel="noopener">Int J Sports Med / PubMed</a></td><td>1990</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-11"><td>[11]</td><td>Duration cut by two-thirds keeps VO₂max (Hickson et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/6214534/" target="_blank" rel="noopener">J Appl Physiol / PubMed</a></td><td>1982</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-12"><td>[12]</td><td>Intensity cut loses VO₂max (Hickson et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/3156841/" target="_blank" rel="noopener">J Appl Physiol / PubMed</a></td><td>1985</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-13"><td>[13]</td><td>Deep-water running maintains VO₂max, VT, RE for 6 wk (Wilber et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/8871917/" target="_blank" rel="noopener">Med Sci Sports Exerc / PubMed</a></td><td>1996</td><td>2026-10-08</td><td>medium-high</td></tr><tr id="src-14"><td>[14]</td><td>4 wk DWR maintains 5 km (Bushman et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/9140909/" target="_blank" rel="noopener">Med Sci Sports Exerc / PubMed</a></td><td>1997</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-15"><td>[15]</td><td>Water running and cycling maintain 2-mile time (Eyestone et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/8427367/" target="_blank" rel="noopener">Am J Sports Med / PubMed</a></td><td>1993</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-16"><td>[16]</td><td>Run-only vs cycle-only meta-analysis (Menges et al.)</td><td><a href="https://doi.org/10.3389/fspor.2026.1843803" target="_blank" rel="noopener">Frontiers in Sports and Active Living</a></td><td>2026-05</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-17"><td>[17]</td><td>Coach 4:1 swim:run ratio, no studies cited</td><td><a href="https://runningmagazine.ca/?p=74656" target="_blank" rel="noopener">Canadian Running Magazine</a></td><td>2020-09</td><td>2026-10-08</td><td>low (grey)</td></tr><tr id="src-18"><td>[18]</td><td>Non-weight-bearing sport weaker bone effect (Li et al., meta-analysis)</td><td><a href="https://doi.org/10.1177/19417381251374976" target="_blank" rel="noopener">Sports Health</a></td><td>2026</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-19"><td>[19]</td><td>Tendon collagen synthesis falls with unloading (de Boer et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/17901116/" target="_blank" rel="noopener">J Physiol / PubMed</a></td><td>2007</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-20"><td>[20]</td><td>Achilles stiffness −17% after 4 wk unloading (Shin et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2576038/" target="_blank" rel="noopener">J Appl Physiol / PMC</a></td><td>2008</td><td>2026-10-08</td><td>low-medium</td></tr><tr id="src-21"><td>[21]</td><td>Cross-training vs run-only, similar 5 km gains (Flynn et al.)</td><td><a href="https://sponet.de/sponet/Record/4001674" target="_blank" rel="noopener">Med Sci Sports Exerc / SPONET</a></td><td>1998</td><td>2026-10-08</td><td>medium-low</td></tr><tr id="src-22"><td>[22]</td><td>Recovery techniques meta-analysis (Dupuy et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5932411/" target="_blank" rel="noopener">Frontiers in Physiology / PMC</a></td><td>2018</td><td>2026-10-08</td><td>high</td></tr><tr id="src-23"><td>[23]</td><td>Hard swim after intervals aids next-day run (Lum et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/19908172/" target="_blank" rel="noopener">Int J Sports Med / PubMed</a></td><td>2010</td><td>2026-10-08</td><td>low-medium</td></tr><tr id="src-24"><td>[24]</td><td>Overtraining consensus (Meeusen et al., ECSS/ACSM)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/23247672/" target="_blank" rel="noopener">Med Sci Sports Exerc / PubMed</a></td><td>2013</td><td>2026-10-08</td><td>high</td></tr><tr id="src-25"><td>[25]</td><td>Overreaching timescales (Meeusen et al., author secondary)</td><td><a href="https://journal.aspetar.com/en/journals/volume-3-issue-1/overtraining-syndrome" target="_blank" rel="noopener">Aspetar Sports Med J</a></td><td>n/d</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-26"><td>[26]</td><td>Overreaching markers in recreational runners (Nuuttila et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/38956784/" target="_blank" rel="noopener">Eur J Sport Sci / PubMed</a></td><td>2024</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-27"><td>[27]</td><td>Subjective measures more sensitive than objective (Saw et al., SR)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/26423706/" target="_blank" rel="noopener">BJSM / PubMed</a></td><td>2016</td><td>2026-10-08</td><td>high</td></tr><tr id="src-28"><td>[28]</td><td>Sleep and the athlete consensus (Walsh et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/33144349/" target="_blank" rel="noopener">BJSM / PubMed</a></td><td>2020-11</td><td>2026-10-08</td><td>medium-high</td></tr><tr id="src-29"><td>[29]</td><td>IOC REDs consensus (Mountjoy et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/37752011/" target="_blank" rel="noopener">BJSM / PubMed</a></td><td>2023-09</td><td>2026-10-08</td><td>high (definition); partial (CAT2 details)</td></tr><tr id="src-30"><td>[30]</td><td>LEA risk 1.13× per weekly exercise hour (Slater et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/26841435/" target="_blank" rel="noopener">Int J Sport Nutr Exerc Metab / PubMed</a></td><td>2016</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-31"><td>[31]</td><td>Polarized ≈ pyramidal, IPD network MA (Rosenblat et al.)</td><td><a href="https://www.stir.ac.uk/research/hub/publication/2095779" target="_blank" rel="noopener">Sports Medicine / Univ. of Stirling</a></td><td>2025-03</td><td>2026-10-08</td><td>high</td></tr><tr id="src-32"><td>[32]</td><td>Polarized advantage only in highly trained (Oliveira et al., MA)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11329428/" target="_blank" rel="noopener">Sports Medicine / PMC</a></td><td>2024</td><td>2026-10-08</td><td>high</td></tr><tr id="src-33"><td>[33]</td><td>Polarized beats threshold-heavy in recreational runners (Muñoz et al.)</td><td><a href="https://abacus.universidadeuropea.com/handle/11268/1931?show=full" target="_blank" rel="noopener">IJSPP / Universidad Europea repository</a></td><td>2014</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-34"><td>[34]</td><td>Time-in-zone vs session-goal counting (Sylta et al.)</td><td><a href="https://uia.brage.unit.no/uia-xmlui/handle/11250/226883" target="_blank" rel="noopener">IJSPP / UiA repository</a></td><td>2014</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-35"><td>[35]</td><td>10% rule program no injury reduction (Buist et al.)</td><td><a href="https://research.rug.nl/en/publications/no-effect-of-a-graded-training-program-on-the-number-of-running-r/" target="_blank" rel="noopener">Am J Sports Med / Univ. of Groningen</a></td><td>2008</td><td>2026-10-08</td><td>high</td></tr><tr id="src-36"><td>[36]</td><td>Weekly &gt;30% progression trend (Nielsen et al.)</td><td><a href="https://vbn.aau.dk/da/publications/excessive-progression-in-weekly-running-distance-and-risk-of-runn" target="_blank" rel="noopener">JOSPT / Aalborg Univ.</a></td><td>2014</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-37"><td>[37]</td><td>Single-run spikes and injury, n=5,205 (Frandsen et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12421110" target="_blank" rel="noopener">BJSM / PMC</a></td><td>2025</td><td>2026-10-08</td><td>medium (one group)</td></tr><tr id="src-38"><td>[38]</td><td>Weekly 20–60% increase raises short-term risk (Damsted et al.)</td><td><a href="https://researchportal.lih.lu/en/publications/the-association-between-changes-in-weekly-running-distance-and-ru/" target="_blank" rel="noopener">JOSPT / LIH</a></td><td>2019-04</td><td>2026-10-08</td><td>medium-low</td></tr><tr id="src-39"><td>[39]</td><td>Injury incidence novice vs recreational (Videbæk et al.)</td><td><a href="https://link.springer.com/article/10.1007/s40279-015-0333-8" target="_blank" rel="noopener">Sports Medicine / Springer</a></td><td>2015</td><td>2026-10-08</td><td>high</td></tr><tr id="src-40"><td>[40]</td><td>Risk factors: previous injury (van der Worp et al.)</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4338213/" target="_blank" rel="noopener">PLoS ONE / PMC</a></td><td>2015</td><td>2026-10-08</td><td>high</td></tr><tr id="src-41"><td>[41]</td><td>Running injury SR; previous injury strongest (Kakouris et al.)</td><td><a href="https://doaj.org/article/658f5d3798fe41a2b1d0978f80c2a4a0" target="_blank" rel="noopener">J Sport Health Sci / DOAJ</a></td><td>2021</td><td>2026-10-08</td><td>high</td></tr><tr id="src-42"><td>[42]</td><td>Pain-monitoring model RCT (Silbernagel et al., via summary)</td><td><a href="https://physicaltherapyfirst.com/blog/continued-sports-activity-using-a-pain-monitoring-model-during-rehabilitation-in-patients-with-achilles-tendinopathy/" target="_blank" rel="noopener">Physical Therapy First (summary of AJSM paper)</a></td><td>2007 (study)</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-43"><td>[43]</td><td>Bone stress injury signs and referral (Schroeder et al.)</td><td><a href="https://aafp.org/pubs/afp/issues/2024/1200/bone-stress-injuries.html" target="_blank" rel="noopener">American Family Physician (AAFP)</a></td><td>2024-12</td><td>2026-10-08</td><td>high</td></tr><tr id="src-44"><td>[44]</td><td>Bone stress injury Delphi consensus (Hoenig et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/39638438/" target="_blank" rel="noopener">BJSM / PubMed</a></td><td>2025-01</td><td>2026-10-08</td><td>high (exists); statements not retrieved</td></tr><tr id="src-45"><td>[45]</td><td>Taper meta-analysis (Bosquet et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/17762369/" target="_blank" rel="noopener">Med Sci Sports Exerc / PubMed</a></td><td>2007</td><td>2026-10-08</td><td>high</td></tr><tr id="src-46"><td>[46]</td><td>Endurance taper meta-analysis (Wang et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10171681/" target="_blank" rel="noopener">PLoS ONE / PMC</a></td><td>2023</td><td>2026-10-08</td><td>high</td></tr><tr id="src-47"><td>[47]</td><td>Marathon taper big data (Smyth &amp; Lawlor)</td><td><a href="https://doi.org/10.3389/fspor.2021.735220" target="_blank" rel="noopener">Frontiers in Sports and Active Living</a></td><td>2021-09</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-48"><td>[48]</td><td>Wrist HR in water 17–30% error (Cosoli et al., Sci Data; news report)</td><td><a href="https://www.news-medical.net/news/20260812/Swimming-sends-wrist-worn-heart-rate-monitors-off-track.aspx" target="_blank" rel="noopener">News-Medical (report of Scientific Data paper)</a></td><td>2026-08</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-49"><td>[49]</td><td>Wrist vs temple HR in swimming (Olstad &amp; Zinner)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7161966/" target="_blank" rel="noopener">PLoS ONE / PMC</a></td><td>2020</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-50"><td>[50]</td><td>Apple Watch on aquatic treadmill, MAE 0.9 bpm (Held et al.)</td><td><a href="https://link.springer.com/content/pdf/10.1007/s11517-022-02536-w.pdf" target="_blank" rel="noopener">Med Biol Eng Comput / Springer</a></td><td>2022</td><td>2026-10-08</td><td>medium (abstract only)</td></tr><tr id="src-51"><td>[51]</td><td>Smartwatch HR during running, 10 devices (Jacko et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11281193/" target="_blank" rel="noopener">Sensors / PMC</a></td><td>2024</td><td>2026-10-08</td><td>medium-high</td></tr><tr id="src-52"><td>[52]</td><td>Session RPE vs HR load in swimmers (Wallace et al.)</td><td><a href="https://opus.lib.uts.edu.au/handle/10453/9495" target="_blank" rel="noopener">UTS OPUS</a></td><td>2009</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-53"><td>[53]</td><td>Session RPE validity review (Haddad et al.)</td><td><a href="https://www.frontiersin.org/articles/10.3389/fnins.2017.00612/full" target="_blank" rel="noopener">Frontiers in Neuroscience</a></td><td>2017-11</td><td>2026-10-08</td><td>medium-high</td></tr><tr id="src-54"><td>[54]</td><td>Sleep deprivation raises RPE, meta-analysis</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11996801/" target="_blank" rel="noopener">Frontiers in Physiology / PMC</a></td><td>2025</td><td>2026-10-08</td><td>high</td></tr><tr id="src-55"><td>[55]</td><td>HRmax formula error ±10 bpm, 4,043 runners (Kasiak et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10146295/" target="_blank" rel="noopener">J Clin Med / PMC</a></td><td>2023</td><td>2026-10-08</td><td>high</td></tr><tr id="src-56"><td>[56]</td><td>HRmax formula bias by sex in marathoners (Nikolaidis et al.)</td><td><a href="https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2018.00226/full" target="_blank" rel="noopener">Frontiers in Physiology</a></td><td>2018</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-57"><td>[57]</td><td>Apple Watch resting HR and HRV validity (O&#x27;Grady et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11478500/" target="_blank" rel="noopener">Sensors / PMC</a></td><td>2024</td><td>2026-10-08</td><td>high (RHR), medium (HRV)</td></tr><tr id="src-58"><td>[58]</td><td>VT1 at 85% HRmax in 1,411 runners (Esteve-Lanao et al.)</td><td><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12845794/" target="_blank" rel="noopener">Sports (MDPI) / PMC</a></td><td>2026</td><td>2026-10-08</td><td>medium (single study)</td></tr><tr id="src-59"><td>[59]</td><td>Three-zone model (Treff et al.)</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6582670/" target="_blank" rel="noopener">Frontiers in Physiology / PMC</a></td><td>2019</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-60"><td>[60]</td><td>Deep-water running systematic review (Kwok et al.)</td><td><a href="https://doi.org/10.3390/ijerph19159434" target="_blank" rel="noopener">Int J Environ Res Public Health</a></td><td>2022</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-61"><td>[61]</td><td>Internal vs external load (Impellizzeri et al.)</td><td><a href="https://www.ncbi.nlm.nih.gov/pubmed/30614348" target="_blank" rel="noopener">IJSPP / PubMed</a></td><td>2019</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-62"><td>[62]</td><td>Wrist vs chest/temple HR in swimming (Applied Sciences)</td><td><a href="https://www.mdpi.com/2076-3417/15/11/5848" target="_blank" rel="noopener">MDPI Applied Sciences</a></td><td>2025</td><td>2026-10-08</td><td>low-medium (snippet)</td></tr><tr id="src-63"><td>[63]</td><td>HRV needs training-tolerance context (Bellenger et al.)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/26640275/" target="_blank" rel="noopener">IJSPP / PubMed</a></td><td>2016</td><td>2026-10-08</td><td>medium</td></tr><tr id="src-64"><td>[64]</td><td>Swim training improved running in untrained subjects (university thesis)</td><td><a href="https://wiredspace.wits.ac.za/items/f07c0f35-7f30-4c9c-9e7d-4b597a610769" target="_blank" rel="noopener">Univ. of the Witwatersrand repository</a></td><td>n/d</td><td>2026-10-08</td><td>low (grey; search snippet only)</td></tr><tr id="src-65"><td>[65]</td><td>Polarized vs. pyramidal RCT in recreational marathoners (Esteve-Lanao et al.; results not retrieved)</td><td><a href="https://observatorio-cientifico.ua.es/documentos/6a81a772926b1d60e686fd55" target="_blank" rel="noopener">Int J Sports Sci Coaching / Univ. of Alicante</a></td><td>2026</td><td>2026-10-08</td><td>n/a (metadata only)</td></tr><tr id="src-66"><td>[66]</td><td>Bone stress injury warning signs for runners (clinician guide)</td><td><a href="https://nextgait.com/bone-stress-injury-warning-signs-runners/" target="_blank" rel="noopener">NextGait</a></td><td>n/d</td><td>2026-10-08</td><td>low-medium (grey)</td></tr></tbody></table></div></details><h2 id="staleness-map">Staleness map</h2>
+<p>Settled research results don't go stale on a fixed window. The claims below are the ones most likely to move, with re-check dates from the domain pack's windows (consensus and guideline status: verify on every use; emerging evidence: 12 months) and device validation (12 months).</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Re-check by</th>
+<th>Claim</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2027-04-01</td>
+<td>Single-run spike replication <a class="cite" href="#src-37">[37]</a> · polarized vs. pyramidal RCT in recreational marathoners <a class="cite" href="#src-65">[65]</a> (results pending)</td>
+</tr>
+<tr>
+<td>2027-10-01</td>
+<td>Wrist HR validation in lap swimming for current watches <a class="cite" href="#src-48">[48]</a><a class="cite" href="#src-50">[50]</a> · VT1 %HRmax replication <a class="cite" href="#src-58">[58]</a> · Bone stress injury consensus statements <a class="cite" href="#src-44">[44]</a> · REDs CAT2 indicators <a class="cite" href="#src-29">[29]</a></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Earliest re-check: April 1, 2027.</strong></p></main></div>
+<footer>Generated from research.md by Mary (BMAD Deep Recon), 2026-10-08. research.md is the source of truth; this page is its presentation.</footer>
+</body></html>
