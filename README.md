@@ -29,6 +29,8 @@ This repository holds the files the BMAD agents produce along the way, from brai
 
 I'm sharing weekly updates on [LinkedIn](https://www.linkedin.com/in/anita-kwan) about building the app with the BMAD agent team, including what worked, what surprised me and what I learned.
 
+* Week 1: [Meeting Mary](https://lnkd.in/p/gtGMpC2y)
+
 ## Disclaimer
 
 The app's suggestions are recommendations, not medical advice. Runners make their own decisions, and anyone with health concerns should consult a medical professional.
